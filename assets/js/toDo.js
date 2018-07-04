@@ -3,8 +3,10 @@ $("input").on("keypress", function(event) {
 	if(event.which === 13) {
 		//grabbing new todo text
 		newToDo = $(this).val();
+		//upercase first letter of eaach word
+		newToDo = upperFirstLtr(newToDo);
 		//add value to ul
-		$("ul").append("<li><span class=\"deleteBtn\">x</span> " + newToDo + "</li>");
+		$("ul").append("<li><span class=\"deleteBtn\"><i class=\"fas fa-trash\"></i></span> " + newToDo + "</li>");
 		//clear input field
 		$(this).val(" ");
 	}
@@ -21,3 +23,16 @@ $("ul").on("click", ".deleteBtn", function() {
 	event.stopPropagation();
 
 });
+
+$(".fa-plus").on("click", function() {
+	$("input").fadeToggle();
+})
+
+function upperFirstLtr(str) {
+	var finalStr = "";
+	finalStr += str[0].toUpperCase();
+	for(var i = 1; i < str.length; i++){
+		finalStr += str[i];
+	}
+	return finalStr;
+}
